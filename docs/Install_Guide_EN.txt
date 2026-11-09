@@ -4,7 +4,7 @@ Version v1.0
 Author's note: I am not a programmer - everything in this mod was built with AI.
 It is for fun only, with no commercial purpose whatsoever.
 If you run into a bug, I would love to hear about it; tell me on Nexus
-or send me an email. My email: aresalberto@gmail.com
+or send me an email. My email: aresalberto0226@gmail.com
 
 1. What is this?
   A DMC5-style rank badge in the top-right corner of the screen
