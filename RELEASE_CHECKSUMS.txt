@@ -1,3 +1,9 @@
+Note: the archive currently uploaded to Nexus Mods was built from these
+sources before a contact-email update in docs/*.txt. Its SHA-256 is
+2e64700c4448acf0ace6b44baac624c5c0e46629bcd3cc2c0f8c86b6ebe095d1 (2,291,017 bytes).
+The manifest below describes the current sources (new email), which will
+match the archive after the file is replaced.
+
 StylishRank v1.0 - release archive manifest
 Archive: StylishRank_v1.0.zip
 Size: 2296686 bytes
