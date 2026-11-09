@@ -1,0 +1,111 @@
+StylishRank v1.0 - Manual Install Edition
+Phantom Blade Zero - DMC5-style combat rank + rank-up sounds
+=====================================================
+
+Author's note: I am not a programmer - everything in this mod was built
+with AI. It is for fun only, with no commercial purpose whatsoever.
+Bug reports are welcome on Nexus or by email: aresalberto0226@gmail.com
+
+This edition has NO one-click installer. Installation is two copy
+operations. If your browser or antivirus dislikes .cmd scripts, use this
+version.
+
+
+1. Install the two prerequisites (once)
+  1. PBZModLoader 0.3.6-preview or newer (mod 113 on Nexus Mods)
+     Needed for the rank badge and scoring.
+     Install to: <game>\ProjectPBZ\PBZModLoader\
+  2. UE4SS 3.0.1 + the signature patch matching your game build
+     Needed for rank-up sounds and the music pulse.
+     Install to: <game>\platform\steam\ue4ss\
+
+  Check:
+    <game>\ProjectPBZ\PBZModLoader\mods.ini   exists = PBZModLoader ready
+    <game>\platform\steam\ue4ss\UE4SS.dll     exists = UE4SS ready
+
+  Find the game folder: Steam -> right-click the game -> Manage ->
+  Browse local files. It normally looks like
+  D:\SteamLibrary\steamapps\common\PBZ  and must contain a "platform"
+  folder and PBZ.exe.
+
+
+2. Copy the two folders
+  Close the game completely first.
+
+  1. Copy payload\StylishRank into:
+       <game>\ProjectPBZ\PBZModLoader\mods\
+     You should end up with:
+       ...\PBZModLoader\mods\StylishRank\main.js
+       ...\PBZModLoader\mods\StylishRank\rankImages.js
+
+  2. Copy payload\StylishAudio into:
+       <game>\platform\steam\ue4ss\Mods\
+     You should end up with:
+       ...\ue4ss\Mods\StylishAudio\enabled.txt
+       ...\ue4ss\Mods\StylishAudio\Scripts\main.lua
+       ...\ue4ss\Mods\StylishAudio\audio\D.WAV ... SSS.WAV (7 files)
+
+  Notes:
+   * Updating an existing install: overwrite the files, do not delete the
+     whole folder, so your key binds (audio\keys.txt) and volume
+     (audio\volume.txt) survive.
+   * Do not keep the extracted folder inside the game directory. Anywhere
+     else (Desktop, Downloads) is fine.
+
+
+3. One-time PowerShell setting (for sound)
+  Press Win, search for "PowerShell", open it, paste and press Enter:
+
+      Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+
+  Answer Y when asked. Without this you may get no sound, or
+  "service not alive" in the log.
+
+
+4. Check in game
+  Enter combat and land a few hits. A D badge in the top-right corner
+  means it works.
+  Thresholds: D 10 / C 30 / B 60 / A 90 / S 120 / SS 150 / SSS 200,
+  maximum score 220.
+  Press [ to lower and ] to raise the rank-up volume; a panel appears in
+  the middle of the screen and closes after 5 seconds of no input.
+  Scoring rules, key rebinding and tunables: see Mod_Intro_EN.txt.
+
+
+5. Uninstall
+  Delete these three folders; nothing else is touched:
+
+    <game>\ProjectPBZ\PBZModLoader\mods\StylishRank\
+    <game>\platform\steam\ue4ss\Mods\StylishAudio\
+    <game>\ProjectPBZ\Content\JavaScript\PBZModLoader\generated-mods\StylishRank\
+
+  The third one is a cache copy made by the mod loader; remove it as well
+  for a clean uninstall.
+
+
+6. Troubleshooting
+  No badge
+    Make sure PBZModLoader is installed. Open
+    <game>\ProjectPBZ\PBZModLoader\evidence\<latest>\loader.log and search
+    for [StylishRank].
+
+  No rank-up sound
+    Make sure UE4SS is installed. Open <game>\platform\steam\ue4ss\UE4SS.log
+    and search for [StylishAudio]; it normally says "service alive".
+    If it always says "service not alive", do step 3.
+
+  [ and ] do nothing
+    They only work while you are in the game world, not in menus or
+    loading screens.
+
+  Badge appears but no sound after a game update
+    The UE4SS signature patch probably does not match the new build.
+    Reinstall the patch for your current game version.
+
+  Changed main.js but nothing happened
+    Press Alt+F5 in game to hot reload. Lua (main.lua) changes need a full
+    game restart.
+
+  Sound works but is quiet
+    Volume range is 0-200, 100 is normal. All rank sounds are loudness
+    normalised, so D and SSS should sound about equally loud.

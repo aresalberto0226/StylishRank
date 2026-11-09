@@ -1,0 +1,100 @@
+﻿StylishRank v1.0 —— 手动安装版
+影之刃零 鬼泣5风格战斗评级 + 升阶音效
+=====================================================
+
+作者留言：我不会编程，这个 mod 全程用 AI 做出来的，纯属娱乐，没有任何商业目的。
+遇到 bug 欢迎反馈，N 网留言或发邮件都行。邮箱：aresalberto0226@gmail.com
+
+这个版本**没有一键安装脚本**，全部靠复制文件完成，一共两步，跟着做就行。
+（如果杀毒软件或下载站对 .cmd 脚本有意见，用这个版本最省心。）
+
+
+一、先装两个前置（只需装一次）
+  1. PBZModLoader 0.3.6-preview 或更新版本（N 网 mod 113）
+     负责评级图标和计分。
+     装到：<游戏目录>\ProjectPBZ\PBZModLoader\
+  2. UE4SS 3.0.1 + 与你游戏版本对应的签名补丁
+     负责升阶音效和音乐律动。
+     装到：<游戏目录>\platform\steam\ue4ss\
+
+  怎么确认装好了：
+    <游戏目录>\ProjectPBZ\PBZModLoader\mods.ini   存在 = PBZModLoader 已装
+    <游戏目录>\platform\steam\ue4ss\UE4SS.dll     存在 = UE4SS 已装
+
+  游戏目录怎么找：Steam → 右键"影之刃零" → 管理 → 浏览本地文件。
+  正常路径形如：D:\SteamLibrary\steamapps\common\PBZ
+  判断对不对：这个文件夹里要能直接看到 platform 文件夹和 PBZ.exe。
+
+
+二、复制两个文件夹
+  先把游戏完全关闭，然后：
+
+  1. 把本包里的 payload\StylishRank 整个文件夹，复制到：
+       <游戏目录>\ProjectPBZ\PBZModLoader\mods\
+     复制完应存在：
+       ...\PBZModLoader\mods\StylishRank\main.js
+       ...\PBZModLoader\mods\StylishRank\rankImages.js
+
+  2. 把本包里的 payload\StylishAudio 整个文件夹，复制到：
+       <游戏目录>\platform\steam\ue4ss\Mods\
+     复制完应存在：
+       ...\ue4ss\Mods\StylishAudio\enabled.txt
+       ...\ue4ss\Mods\StylishAudio\Scripts\main.lua
+       ...\ue4ss\Mods\StylishAudio\audio\D.WAV 等 7 个 WAV
+
+  提示：
+   * 以前装过本 mod 的，直接覆盖同名文件即可，不要删整个文件夹 ——
+     这样你改过的按键（audio\keys.txt）和音量（audio\volume.txt）会保留。
+   * 不要把解压出来的这个文件夹放在游戏目录里面。放桌面、下载文件夹都行，
+     放游戏目录里有可能干扰音效目录的识别。
+
+
+三、音效需要的一次性设置（PowerShell）
+  按 Win 键，搜索 "PowerShell"，打开，粘贴下面这行并回车：
+
+      Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+
+  出现确认提示时输入 Y 再回车。
+  如果没做这一步，可能出现"没有声音"或日志里 "service not alive"。
+
+
+四、进游戏验证
+  进入战斗、打几下，右上角出现 D 评级就说明装好了。
+  评级门槛：D 10 / C 30 / B 60 / A 90 / S 120 / SS 150 / SSS 200，分数上限 220。
+  按 [ 减小音量、按 ] 增大音量，屏幕中间会弹出音量面板，5 秒不动自动收起。
+  加减分规则、按键自定义、可调参数，见同目录下的 模组介绍_中文CN.txt。
+
+
+五、卸载
+  删除下面三个文件夹即可，其他 mod 和游戏文件都不动：
+
+    <游戏目录>\ProjectPBZ\PBZModLoader\mods\StylishRank\
+    <游戏目录>\platform\steam\ue4ss\Mods\StylishAudio\
+    <游戏目录>\ProjectPBZ\Content\JavaScript\PBZModLoader\generated-mods\StylishRank\
+
+  第三个是加载器生成的缓存副本，删掉它才会彻底干净。
+
+
+六、常见问题
+  右上角没有评级图标
+    确认 PBZModLoader 装好了。打开
+    <游戏目录>\ProjectPBZ\PBZModLoader\evidence\<最新时间>\loader.log
+    搜索 [StylishRank] 看有没有报错。
+
+  没有升阶音效
+    确认 UE4SS 装好了。打开 <游戏目录>\platform\steam\ue4ss\UE4SS.log
+    搜索 [StylishAudio]，正常会看到 "service alive"。
+    一直是 "service not alive" 的话，做第三节的 PowerShell 设置。
+
+  按 [ ] 没反应
+    这两个键只在对局里生效，主菜单和加载画面按了没用。
+
+  升级后图标出来了但没声音
+    多半是 UE4SS 更新后签名补丁没跟上，重装对应版本的签名补丁。
+
+  改了 main.js 不生效
+    游戏里按 Alt+F5 热重载；改了 main.lua 必须重启游戏。
+
+  音效面板能调但声音很小
+    音量范围 0-200，100 是标准值；所有音效已经做过响度归一化，
+    D 和 SSS 听起来应该差不多响。

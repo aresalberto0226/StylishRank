@@ -13,6 +13,21 @@ can be reviewed and verified.
 
 ---
 
+## Two release archives
+
+| Archive | Contents |
+| --- | --- |
+| `StylishRank_v1.0.zip` | mod files + one-click install/uninstall `.cmd` scripts |
+| `StylishRank_v1.0_manual.zip` | identical mod files, **no `.cmd` scripts**; users copy the two folders in `payload/` by hand |
+
+The manual edition exists because batch scripts are one of the file types that
+automated scanners flag. Its manifest is in `RELEASE_CHECKSUMS_MANUAL.txt`, and
+the manual instructions are `docs/安装说明_手动安装_CN.txt` and
+`docs/Install_Guide_MANUAL_EN.txt`. Both archives contain the same `main.js`,
+`main.lua`, `rank_service.ps1`, `.cs` sources and WAV audio.
+
+---
+
 ## What the mod does
 
 Adds a Devil May Cry 5 style battle rank badge (D → C → B → A → S → SS → SSS)
