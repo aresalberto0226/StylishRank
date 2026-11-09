@@ -1,0 +1,9 @@
+# StylishAudio 升阶音量按键设置
+# 保存后约 2 秒内自动生效，不用重启游戏。
+# 等号右边填按键名：
+#   A-Z、0-9、F1-F12
+#   符号： [ ] / \ ; ' , . - = `
+#   特殊： SPACE TAB ENTER ESC HOME END INS DEL UP_ARROW DOWN_ARROW 等
+# 和游戏或其他 mod 冲突时，把对应那行换成别的键即可。
+down = [
+up = ]

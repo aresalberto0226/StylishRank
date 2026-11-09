@@ -1,0 +1,130 @@
+StylishRank - Phantom Blade Zero DMC5-style combat rank + rank-up sounds
+Version v1.0
+=====================================================
+Author's note: I am not a programmer - everything in this mod was built with AI.
+It is for fun only, with no commercial purpose whatsoever.
+If you run into a bug, I would love to hear about it; tell me on Nexus
+or send me an email. My email: aresalberto@gmail.com
+
+1. What is this?
+  A DMC5-style rank badge in the top-right corner of the screen
+  (D -> C -> B -> A -> S -> SS -> SSS).
+  Attacks, deflections and executions add score; getting hit removes it;
+  standing still drains it; the badge hides itself while paused or in menus.
+  The badge pulses and flashes with the bass of the background music,
+  and a rank-up sound plays when you climb a tier.
+
+
+2. Before installing (two prerequisites, install once)
+  1. PBZModLoader 0.3.6-preview or newer (mod 113 on Nexus Mods)
+     - required for the rank badge and scoring.
+     Install to: <game>\ProjectPBZ\PBZModLoader\
+  2. UE4SS 3.0.1 + the signature patch matching your game build
+     - required for rank-up sounds and the music pulse.
+     Install to: <game>\platform\steam\ue4ss\
+
+  Missing prerequisites are not fatal: the installer still copies the mod
+  and only tells you which part is unavailable for now. Everything starts
+  working once the prerequisite is installed (for the sound part, re-run
+  the installer after installing UE4SS).
+
+  How to check the prerequisites:
+    <game>\ProjectPBZ\PBZModLoader\mods.ini   exists = PBZModLoader installed
+    <game>\platform\steam\ue4ss\UE4SS.dll     exists = UE4SS installed
+
+
+3. One-click install (easiest)
+  1. Fully close the game.
+  2. Extract the whole archive (do not run anything from inside the archive).
+  3. Double-click "一键安装.cmd" (the one-click install script).
+  4. The installer finds your Steam install automatically; if it cannot,
+     paste the path you get from
+     "Steam -> right-click the game -> Manage -> Browse local files".
+  5. Wait for the final "安装完成 OK" line ("installation complete OK").
+     The installer's own messages are in Chinese; this guide covers the steps.
+
+
+4. Manual install (if you prefer not to use the installer)
+  Copy the two folders from payload to:
+    payload\StylishRank  ->  <game>\ProjectPBZ\PBZModLoader\mods\StylishRank\
+    payload\StylishAudio ->  <game>\platform\steam\ue4ss\Mods\StylishAudio\
+
+  Final layout:
+    ...\mods\StylishRank\main.js
+    ...\mods\StylishRank\rankImages.js
+    ...\Mods\StylishAudio\enabled.txt
+    ...\Mods\StylishAudio\Scripts\main.lua
+    ...\Mods\StylishAudio\audio\D.WAV ... SSS.WAV
+
+
+5. Using it in game
+  * Enter combat and land hits; at 10 points the D badge appears top-right.
+  * Rank thresholds: D 10 / C 30 / B 60 / A 90 / S 120 / SS 150 / SSS 200,
+    maximum score 220.
+  * Scoring: attack +2 (every 0.25 s); deflect/dodge success +10;
+    deflect/dodge failure -15; taking damage -10; execution +10;
+    completely idle for more than 2 s drains 20 points per second.
+  * Leaving combat resets the score; pausing or opening menus hides the
+    badge and freezes scoring.
+  * Rank-up plays one sound; rank-down plays nothing; the D sound plays
+    only once per fight.
+  * Volume: press [ to lower and ] to raise, 5% per press. A panel pops up
+    in the middle of the screen; the lit blocks show the current volume.
+    It closes automatically after 5 seconds of no input.
+    Range 0-200 (100 = normal; all rank sounds were normalised to the same
+    loudness) and stored in audio\volume.txt, so it persists across sessions.
+  * Rebinding: edit the "down" and "up" lines in audio\keys.txt; changes
+    take effect in about 2 seconds, no restart needed.
+    Supported key names: A-Z, 0-9, F1-F12, [ ] / \ ; ' , . - = `
+    and SPACE TAB ENTER ESC HOME END INS DEL UP_ARROW DOWN_ARROW, etc.
+    Do not bind both lines to the same key.
+
+
+6. Troubleshooting
+  Badge does not appear
+    Make sure PBZModLoader is installed. Check
+    <game>\ProjectPBZ\PBZModLoader\evidence\<latest timestamp>\loader.log
+    and search for [StylishRank].
+
+  No rank-up sound
+    Make sure UE4SS is installed. Check <game>\platform\steam\ue4ss\UE4SS.log
+    and search for [StylishAudio]; normally you will see "service alive".
+    If it always says "service not alive", run this once in a normal
+    PowerShell window:
+      Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+
+  Pressing [ / ] does nothing
+    The panel widgets are only created once you are actually in the game
+    world; keys do nothing on the main menu or during loading screens.
+    If it still does not work after playing for a while, check that the
+    key names in keys.txt are spelled correctly.
+
+  Badge does not pulse with music
+    The music has to play through the "default output device". Virtual
+    sound cards or a separate HDMI output may not be captured.
+
+  Changed main.js but nothing happened
+    Press Alt+F5 in game to hot reload. Lua (main.lua) changes require a
+    full game restart.
+
+
+7. Uninstall
+  Easiest: double-click "一键卸载.cmd" (the one-click uninstall script) in the
+  same folder and confirm; it removes everything cleanly.
+  Or delete these three folders by hand:
+    <game>\ProjectPBZ\PBZModLoader\mods\StylishRank\
+    <game>\platform\steam\ue4ss\Mods\StylishAudio\
+    <game>\ProjectPBZ\Content\JavaScript\PBZModLoader\generated-mods\StylishRank\
+  No original game files are touched, and other mods are left alone.
+  Your custom keys (keys.txt) and volume (volume.txt) are removed with them.
+
+
+8. Credits
+  Rank logic and UI: AresAlberto (me)
+  JS mod loader: PBZModLoader (LLKKFF, Nexus Mods)
+  Lua mod loader: UE4SS (MIT License, https://github.com/UE4SS-RE/RE-UE4SS)
+
+
+9. More
+  Gameplay, scoring rules, rank thresholds, key bindings and tunable
+  settings are described in "Mod_Intro_EN.txt" in the same folder.

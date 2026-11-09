@@ -1,0 +1,28 @@
+StylishRank v1.0 - release archive manifest
+Archive: StylishRank_v1.0.zip
+Size: 2291017 bytes
+SHA-256: 2e64700c4448acf0ace6b44baac624c5c0e46629bcd3cc2c0f8c86b6ebe095d1
+
+Per-file SHA-256 (as stored in the archive):
+c18e54608242ac1e410bb0fec7d5324a7c5bebbb8bedb77b8bf33a1febc26af7      6009  StylishRank_v1.0/Install_Guide_EN.txt
+61b0d914d198ce6bb0272a1fcf979b586764bb9c0e12e37537172ad63e0dde2e      6117  StylishRank_v1.0/Mod_Intro_EN.txt
+878a2eae03b678a783c43bc961ffe1a018664e28d22df5ea8bcb07a3c35af795      4126  StylishRank_v1.0/一键卸载.cmd
+f0750c39399e38a7f8637a6c14155c9288e29f80131e81235e7f101b75404c97      5821  StylishRank_v1.0/一键安装.cmd
+28e12c9e9ed1290b1fb94e1542a64531eefb52c2742b455357b073f9540cf54d      5338  StylishRank_v1.0/安装说明_中文CN.txt
+cb23767e813eed3bb9be674930ce013167b4cf94516ab6d3d659796d65214f3d      5635  StylishRank_v1.0/模组介绍_中文CN.txt
+4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865         2  StylishRank_v1.0/payload/StylishAudio/enabled.txt
+72810ca05a352c63e931e26a1081a8d9b65157c53e4239c8a931d3fb1e732925    323662  StylishRank_v1.0/payload/StylishAudio/audio/A.WAV
+9027ece616fab73c1af082c755ab0ae7da6661c0d2f885cd5df5fbf15a156d52    299086  StylishRank_v1.0/payload/StylishAudio/audio/B.WAV
+58fecafa3588eedc533aa6682a1fad3cb7a4f50692d759ad1ba677306cc68925    237646  StylishRank_v1.0/payload/StylishAudio/audio/C.WAV
+14d4b221fbc96dd35b4a836881ce5d185c933ce0ab69b524d45d05365e969c5c    249934  StylishRank_v1.0/payload/StylishAudio/audio/D.WAV
+4205546a53e929f0d45ef3a825207708f6948c2c02c03258612592f93b5d1c15       357  StylishRank_v1.0/payload/StylishAudio/audio/keys.txt
+6a469a525edaba8201409c1778bf9b4062c109f5b9ca3cf5f57477406f943a23      3322  StylishRank_v1.0/payload/StylishAudio/audio/PeakMeter.cs
+bca460d7af051e15a4c851118c8d7ecb3e2a3953cc254dceba50d7ab14e1f338      6898  StylishRank_v1.0/payload/StylishAudio/audio/rank_service.ps1
+d4859979c64070a65ecccb7c5cd5a89f07fdb6ae3ea77b7b2ebf335f326ded1c    323662  StylishRank_v1.0/payload/StylishAudio/audio/S.WAV
+86dd804d1beb70563230e9d66699ea1b3829f226cbac958d7a508ef045b6d031    368718  StylishRank_v1.0/payload/StylishAudio/audio/SS.WAV
+8aa8a29e0d688d555e1cb6f3712fc66e875f710d08ae3b0c0bb94e409334ec90    495694  StylishRank_v1.0/payload/StylishAudio/audio/SSS.WAV
+eb58f42639c8785b35801a41bc611dfc6b7dd40dda18ac619d33ea35cec725b0      3072  StylishRank_v1.0/payload/StylishAudio/audio/WavGain.cs
+060097494f9a0891486c66e7bc8b416e83d6dbb63c3d3ad3dd8f893681c3004b     24165  StylishRank_v1.0/payload/StylishAudio/Scripts/main.lua
+619518f0f712f5b253168ac6adc7f7ff5d58c209c9a6233a11c7b579f31557e4     39354  StylishRank_v1.0/payload/StylishRank/main.js
+9775431aad019d99a55e1b92884b155476125efefa21aad047dff4267d71be58    295912  StylishRank_v1.0/payload/StylishRank/rankImages.js
+055e4c0f23520bca5c8db8503d83513cd473d24d2822f0425601d122c861be81      7348  StylishRank_v1.0/payload/StylishRank/README.txt

@@ -1,0 +1,146 @@
+StylishRank - Phantom Blade Zero DMC5-style combat rank
+Version v1.0 - Mod overview
+=====================================================
+Author's note: I am not a programmer - everything in this mod was built with AI. 
+It is for fun only, with no commercial purpose whatsoever.
+If you run into a bug, I would love to hear about it; tell me on Nexus
+or send me an email. My email: aresalberto@gmail.com
+
+
+1. What this mod does
+-----------------------------------------------------
+  It brings the Devil May Cry 5 combat rank into Phantom Blade Zero.
+
+  A rank badge appears in the top-right corner, from low to high:
+      D -> C -> B -> A -> S -> SS -> SSS
+  Fight well and the score climbs, all the way to SSS; getting hit or
+  standing around costs points and drops tiers.
+  Once combat ends the score resets to zero, the badge disappears, and the
+  next fight starts over.
+
+  The badge scales with the bass of the background music and flashes white,
+  and a rank-up sound plays when you climb a tier.
+  In short: the flashier you fight, the livelier the top-right corner gets.
+
+
+2. Two parts
+-----------------------------------------------------
+  StylishRank   - rank badge + scoring (PBZModLoader / JS)
+  StylishAudio  - rank-up sounds + music pulse (UE4SS / Lua)
+
+  You can install just one:
+    StylishRank only  -> badge and scoring work, no sound, no music pulse
+    StylishAudio only -> pointless on its own (sounds are triggered by
+                         the badge ranking up)
+  Installing both is recommended; the installer does it in one pass.
+
+
+3. Scoring (what adds points)
+-----------------------------------------------------
+  Attack hit            +2 every 0.25 s   (about 8 points/sec, sustained pressure)
+  Deflect / dodge OK    +10               (the real core income)
+  Execution             +10               (once per execution move)
+
+  Notes:
+    * Plain slashing alone rarely reaches S; deflects and executions are
+      what push you up.
+    * An execution is a big chunk of points in a short time; a combo into
+      an execution can jump a whole tier.
+
+
+4. Penalties (what costs points)
+-----------------------------------------------------
+  Deflect / dodge failed    -15           (greedy swings and panic rolls get punished)
+  Taking damage             -10           (once per hit)
+  Standing still            -20 per sec   (only after 2 full seconds without any action)
+
+  Notes:
+    * The idle drain only starts after 2 consecutive seconds with no action.
+      Attacking, executing, chaining, blocking, dodging and getting hit all
+      count as actions, so none of them drain.
+    * Score never goes below 0.
+
+
+5. Rank thresholds
+-----------------------------------------------------
+  Rank     Score needed
+  ----     ------------
+  D            10
+  C            30
+  B            60
+  A            90
+  S           120
+  SS          150
+  SSS         200
+  -- score cap: 220 --
+
+    * Below 10 points the badge is not shown at all (so it does not pop up
+      the moment a fight starts).
+    * Climbing a tier plays one sound; dropping a tier plays nothing.
+    * The D sound plays only once per fight, so it does not repeat at the
+      start of every encounter.
+
+
+6. When it hides
+-----------------------------------------------------
+  * Out of combat: score resets to zero, badge disappears.
+  * Paused / map open / menu open: badge hidden, scoring frozen.
+  * Removing the mod: just delete the folders; saves and game files are
+    completely unaffected.
+
+
+7. Controls
+-----------------------------------------------------
+  Adjusting rank-up sound volume:
+      press [    volume -5%
+      press ]    volume +5%
+      A volume panel pops up in the middle of the screen; the lit blocks
+      show the current volume. It closes after 5 seconds without input.
+
+  Volume range 0 - 200:
+      100 = normal (all rank sounds were normalised to the same loudness,
+            so D is no longer quieter than the rest)
+      0   = muted
+      200 = double volume, may clip
+      The setting is saved and persists across sessions.
+
+  Rebinding:
+      File: ...\platform\steam\ue4ss\Mods\StylishAudio\audio\keys.txt
+      Replace the key after the equals sign; changes take effect in about
+      2 seconds, no game restart needed:
+          down = [     lower volume
+          up   = ]     raise volume
+      Supported key names: A-Z, 0-9, F1-F12, [ ] / \ ; ' , . - = `,
+      and SPACE TAB ENTER ESC HOME END INS DEL UP_ARROW DOWN_ARROW, etc.
+      Do not bind both lines to the same key. If a key conflicts with the
+      game or another mod, pick a different one.
+
+  Note: the small hint line on the volume panel is baked into the panel
+        image as the default text; if you rebind, keys.txt is what counts.
+
+
+8. Tweaking the numbers
+-----------------------------------------------------
+  File: ...\ProjectPBZ\PBZModLoader\mods\StylishRank\main.js
+  Save after editing, then press Alt+F5 in game to hot reload; no restart
+  needed.
+
+      RANK_MIN           rank thresholds, default [10, 30, 60, 90, 120, 150, 200]
+      SCORE_MAX          score cap, default 220
+      SCORE_MELEE        points per attack, default 2
+      SCORE_DEFLECT      points for a successful deflect/dodge, default 10
+      SCORE_DEFLECT_FAIL points lost on a failed deflect/dodge, default 15
+      SCORE_DAMAGE       points lost when hit, default 10
+      SCORE_EXECUTION    points per execution, default 10
+      IDLE_GRACE_MS      grace period before idle drain starts, default 2000
+      SCORE_IDLE_DRAIN   points lost per second while idle, default 20
+      MARGIN             badge distance from the screen edge, default 44
+      SLOT_W / SLOT_H    badge size, default 200 x 200
+
+  Too hard? Lower the thresholds. Too easy? Raise the penalties. Up to you.
+
+
+=====================================================
+  Installation instructions are in "Install_Guide_EN.txt"
+  in the same folder.
+=====================================================

@@ -1,0 +1,110 @@
+StylishRank —— 影之刃零 DMC5 风格战斗评级 + 升阶音效
+版本 v1.0
+=====================================================
+作者留言：我不会编程等操作，做mod的一切操作都是ai跑的，仅供娱乐，并无任何商业用途。
+如有bug希望能反馈给我，感谢。可以在n网上说也可以给我发邮件。这是我的邮箱：aresalberto@gmail.com
+
+
+一、这是什么？
+  右上角显示 DMC5 风格评级徽章（D → C → B → A → S → SS → SSS）。
+  攻击、弹反、处决加分；被打掉分；站着不动会缓降；暂停/菜单自动隐藏。
+  徽章随背景音乐重低音缩放、闪光；升阶时播放对应音效。
+
+
+二、安装前需要准备（两个前置组件，装一次即可）
+  1. PBZModLoader 0.3.6-preview 或更新（Nexus Mods 上的 mod 113）
+     —— 评级徽章和计分需要它。
+     安装位置：<游戏目录>\ProjectPBZ\PBZModLoader\
+  2. UE4SS 3.0.1 + 对应本游戏版本的签名修复（Signature Patch）
+     —— 升阶音效和音乐律动需要它。
+     安装位置：<游戏目录>\platform\steam\ue4ss\
+
+  没有装也没关系：安装器会把本 mod 放好，只提示你哪部分暂时不可用；
+  装好前置后会自动生效（音效部分建议重新运行一次安装器）。
+
+  怎么确认前置装好了？
+    <游戏目录>\ProjectPBZ\PBZModLoader\mods.ini   存在 = PBZModLoader 已装
+    <游戏目录>\platform\steam\ue4ss\UE4SS.dll     存在 = UE4SS 已装
+
+
+三、一键安装（最省事）
+  1. 完全退出游戏。
+  2. 解压整个压缩包（不要在压缩包里直接双击）。
+  3. 双击“一键安装.cmd”。
+  4. 安装器会自动找 Steam 游戏目录；找不到就按提示粘贴
+     “Steam → 右键游戏 → 管理 → 浏览本地文件”的路径。
+  5. 看到“安装完成 OK”即可。
+
+
+四、手动安装（不想用安装器时）
+  把 payload 里的两个文件夹复制到：
+    payload\StylishRank  →  <游戏目录>\ProjectPBZ\PBZModLoader\mods\StylishRank\
+    payload\StylishAudio →  <游戏目录>\platform\steam\ue4ss\Mods\StylishAudio\
+
+  最终结构：
+    ...\mods\StylishRank\main.js
+    ...\mods\StylishRank\rankImages.js
+    ...\Mods\StylishAudio\enabled.txt
+    ...\Mods\StylishAudio\Scripts\main.lua
+    ...\Mods\StylishAudio\audio\D.WAV ... SSS.WAV
+
+
+五、进游戏怎么用
+  * 进战斗打中敌人，分数到 10 分右上角出现 D 徽章。
+  * 等级门槛：D 10 / C 30 / B 60 / A 90 / S 120 / SS 150 / SSS 200，上限 220。
+  * 评分：攻击 +2（每 0.25 秒）；弹反/闪避成功 +10；失败 -15；
+    被打 -10；处决 +10；连续 2 秒完全没动作每秒 -20。
+  * 脱战清零；暂停/地图自动隐藏并冻结计分。
+  * 升阶播一次音效，降阶不播；D 每场战斗只播一次。
+  * 调音量：按 [ 减小 / ] 增大，每次 5%，屏幕中间弹出面板，
+    亮起的格子就是当前音量，5 秒不操作自动收起。
+    范围 0~200（100 = 标准，各等级音效已统一响度），
+    保存在 audio\volume.txt，下次开游戏还是它。
+  * 改按键：编辑 audio\keys.txt 里的 down / up 两行，保存后约 2 秒生效。
+    支持 A-Z、0-9、F1-F12、[ ] / \ ; ' , . - = ` 以及
+    SPACE TAB ENTER ESC HOME END INS DEL UP_ARROW DOWN_ARROW 等。
+    两行不要写成同一个键。
+
+
+六、常见问题
+  徽章不出现
+    确认 PBZModLoader 已安装；看
+    <游戏目录>\ProjectPBZ\PBZModLoader\evidence\<最新时间>\loader.log
+    搜索 [StylishRank]。
+
+  没有升阶音效
+    确认 UE4SS 已安装；看 <游戏目录>\platform\steam\ue4ss\UE4SS.log
+    搜索 [StylishAudio]，正常会看到 service alive。
+    如果一直 service not alive，在普通 PowerShell 里执行一次：
+      Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+
+  按 [ / ] 没有面板
+    面板控件要真正进入游戏世界后才创建，主菜单/读条时按是没反应的。
+    如果进游戏很久仍没有，检查 keys.txt 里的键名是否写错。
+
+  徽章不跟音乐动
+    音乐需要从“系统默认输出设备”播放；虚拟声卡/独立 HDMI 可能采不到。
+
+  改了 main.js 想生效
+    游戏里按 Alt+F5 热重载；改了 Lua（main.lua）必须重启游戏。
+
+
+七、卸载
+  最简单：双击同一个文件夹里的「一键卸载.cmd」，确认后自动删干净。
+  也可以手动删除这三个文件夹：
+    <游戏目录>\ProjectPBZ\PBZModLoader\mods\StylishRank\
+    <游戏目录>\platform\steam\ue4ss\Mods\StylishAudio\
+    <游戏目录>\ProjectPBZ\Content\JavaScript\PBZModLoader\generated-mods\StylishRank\
+  不会改动任何游戏原始文件，其他 mod 也不受影响。
+  自定义的按键（keys.txt）和音量（volume.txt）会随文件夹一起删除。
+
+
+八、致谢
+  评级逻辑与界面：我自己 AresAlberto
+  JS mod 加载器：PBZModLoader（LLKKFF，Nexus Mods）
+  Lua mod 加载器：UE4SS（MIT License，https://github.com/UE4SS-RE/RE-UE4SS）
+
+
+九、更多说明
+  玩法、加减分规则、等级门槛、按键说明、可调参数
+  见同一文件夹里的「模组介绍_中文CN.txt」，英文版见 Mod_Intro_EN.txt。
